@@ -1,38 +1,83 @@
 #!/usr/bin/env python
+"""
 
+It's a common annoyance; you're in a meeting, someone says "You want
+that feature?!", and some smart aleck has to follow it with "You can't
+HANDLE that feature!".  Now you can be that smart aleck, but dorkier,
+and with more parts of speech than you ever imagined.
+
+This was a bit of fun to start with, but it's really cumbersome to
+use.  But for those office polemics where you for some reason must be
+the type of person to like this, it's useful.
+
+"""
+
+import os
 import sys
 
 
-PARTS = [
-    ("wimpy_name_one", "Kaffee"),
-    ("manly_name", "Jessup"),
-    ("want_noun", "answers"),
-    ("want_really_noun", "truth"),
-    ("unpleasant_truth_noun",  "wall"),
-    ("unpleasant_truth_preposition", "on"),
-    ("unpleasant_truth_consequence_verb", "guarded by"),
-    ("unpleasant_truth_consequence_object", "men with guns"),
-    ("wimpy_name_two", "Lt. Weinberg"),
-    ("unfortunately_harmed_noun", "Santiago"),
-    ("unfortunate_harmer_collectivenoun", "Marines"),
-    ("unfortunate_harm_noun", "death"),
-    ("ends_justifying_means_result_past", "saved lives"),
-    ("ends_justifying_means_result_present", "saves lives"),
-    ("manly_word_one_noun", "honor"),
-    ("manly_word_two_noun", "code"),
-    ("manly_word_three_noun", "loyalty"),
-    ("manly_action_verbphrase", "defending something"),
-    ("wimpy_action_verbphrase", "a punchline"),
-    ("manly_action_results_noun", "freedom"),
-    ("manly_assistance_tool_noun", "a weapon"),
-    ("manly_assistance_tool_usage_verb", "pick up"),
-    ("manly_assistance_verb", "stand a post"),
-    ("messy_action_verb", "order"),
-    ("messy_action_object", "the code red"),
-]
+PARTS = {
+    "cliche": [
+        ("wimpy_name_one", "Kaffee"),
+        ("manly_name", "Jessup"),
+        ("want_noun", "answers"),
+        ("want_really_noun", "truth"),
+        ("unpleasant_truth_noun",  "wall"),
+        ("unpleasant_truth_preposition", "on"),
+        ("unpleasant_truth_consequence_verb", "guarded by"),
+        ("unpleasant_truth_consequence_object", "men with guns"),
+        ("wimpy_name_two", "Lt. Weinberg"),
+        ("unfortunately_harmed_noun", "Santiago"),
+        ("unfortunate_harmer_collectivenoun", "Marines"),
+        ("unfortunate_harm_noun", "death"),
+        ("ends_justifying_means_result_past", "saved lives"),
+        ("ends_justifying_means_result_present", "saves lives"),
+        ("manly_word_one_noun", "honor"),
+        ("manly_word_two_noun", "code"),
+        ("manly_word_three_noun", "loyalty"),
+        ("manly_action_verbphrase", "defending something"),
+        ("wimpy_action_verbphrase", "a punchline"),
+        ("manly_action_results_noun", "freedom"),
+        ("manly_assistance_tool_noun", "a weapon"),
+        ("manly_assistance_tool_usage_verb", "pick up"),
+        ("manly_assistance_verb", "stand a post"),
+        ("messy_action_verb", "order"),
+        ("messy_action_object", "the code red"),
+        ],
+
+    "rmsvssteve": [
+        ('wimpy_name_one', 'Richard'),
+        ('manly_name', 'Steve'),
+        ('want_noun', 'GPL software'),
+        ('want_really_noun', 'freedom'),
+        ('unpleasant_truth_noun', 'user'),
+        ('unpleasant_truth_preposition', 'coddling'),
+        ('unpleasant_truth_consequence_verb', 'coddled with'),
+        ('unpleasant_truth_consequence_object', 'shiny UIs and fart apps'),
+        ('wimpy_name_two', 'Linus'),
+        ('unfortunately_harmed_noun', 'BSD-licensed code'),
+        ('unfortunate_harmer_collectivenoun', 'proprietary hardware vendors'),
+        ('unfortunate_harm_noun', 'existence'),
+        ('ends_justifying_means_result_past', 'harmed Windows adoption'),
+        ('ends_justifying_means_result_present', 'increases POSIX installs'),
+        ('manly_word_one_noun', 'design'),
+        ('manly_word_two_noun', 'beauty'),
+        ('manly_word_three_noun', 'gradient fill'),
+        ('manly_action_verbphrase', 'selling hyper-fashionable products'),
+        ('wimpy_action_verbphrase', 'anti-vi joke'),
+        ('manly_action_results_noun', 'userbase'),
+        ('manly_assistance_tool_noun', 'normal IDE'),
+        ('manly_assistance_tool_usage_verb', 'pick up'),
+        ('manly_assistance_verb', 'write a popular app'),
+        ('messy_action_verb', 'sacrifice'),
+        ('messy_action_object', 'hacker ideals'),
+        ],
+}
+
+PARTS["custom"] = PARTS["cliche"][:]
 
 
-SPEECH = """
+SPEECH_TEMPLATE = """
 %(manly_name)s: You want %(want_noun)s?
 %(wimpy_name_one)s: I think I'm entitled to them.
 %(manly_name)s: You want %(want_noun)s?
@@ -45,20 +90,70 @@ We use words like %(manly_word_one_noun)s, %(manly_word_two_noun)s, %(manly_word
 %(manly_name)s: You're goddamn right I did!!
 """
 
-PARTS_OF_SPEECH = dict(PARTS)
-ORDER_OF_SPEECH = [part for part, default in PARTS]
-updated_speech = dict(PARTS_OF_SPEECH)
+def generate_parts_order_andspeech(version=None):
+    if version is None:
+        version = "cliche"
 
-while True:
-    sys.stdout.write("%s\n" % (SPEECH % updated_speech))
-    indexes = dict(enumerate(ORDER_OF_SPEECH))
-    for index, key in indexes.iteritems():
-        print "%0.2i: %40s: %s" % (index, key, updated_speech[key])
-    sys.stdout.write("---\nEnter number then new value, or blank to reset: ")
-    updates = sys.stdin.readline().split()
-    update_key = int(updates[0])
-    update_value = " ".join(updates[1:])
-    if not update_value:
-        update_value = PARTS_OF_SPEECH[indexes[update_key]]
-    updated_speech[indexes[update_key]] = update_value
+    parts_of_speech = dict(PARTS[version])
+    order_of_speech = [part for part, default in PARTS[version]]
+    updated_speech = dict(parts_of_speech)
+
+    return updated_speech, order_of_speech
+
+
+
+if __name__ == "__main__":
+
+    version = PARTS.keys()[0] # probably deterministic, but random's OK too
+    parts_of_speech = dict(PARTS[version])
+    order_of_speech = [part for part, default in PARTS[version]]
+
+    while True:
+
+        sys.stdout.write(SPEECH_TEMPLATE % (parts_of_speech))
+        sys.stdout.write(os.linesep)
+        indexes = dict(enumerate(order_of_speech))
+        for index, key in indexes.iteritems():
+            sys.stdout.write("%0.2i: %40s: %s%s" % (
+                    index, key, parts_of_speech[key], os.linesep))
+
+        sys.stdout.write(
+            """Enter:
+   a) number then new value, or blank to reset; or
+   b) version, where version is one of %s (for pre-defined versions); or
+   3) dump, to print a repr of your dict (not that's not an image macro joke)
+   d) eval <the repr>, to load a repr of your dict
+   e) quit
+"""
+            % ", ".join(sorted(PARTS.keys())))
+
+        sys.stdout.write("---> ")
+
+        def my_repr():
+            return "{'%s'}" % "', '".join(["'%s': '%s'" % (part, parts_of_speech[part])
+                                           for part in order_of_speech])
+
+        updates = sys.stdin.readline().split()
+        if len(updates) < 1 or updates[0] == "quit":
+            sys.stdout.write(my_repr() + os.linesep)
+            sys.exit(0)
+
+        elif updates[0] == "dump":
+            # repr manually to do it in order, for sanity / cut & paste ease
+            sys.stdout.write(my_repr() + os.linesep + os.linesep)
+
+        elif updates[0] == "eval":
+            parts_of_speech = eval(" ".join(updates[1:]))
+
+        elif updates[0] in PARTS:
+            version = updates[0]
+            parts_of_speech = dict(PARTS[version])
+            order_of_speech = [part for part, default in PARTS[version]]
+
+        elif updates[0][0] in [str(i) for i in range(10)]:
+            update_key = int(updates[0])
+            update_value = " ".join(updates[1:])
+            if not update_value:
+                update_value = dict(PARTS[version])[indexes[update_key]]
+            parts_of_speech[indexes[update_key]] = update_value
 
