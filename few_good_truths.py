@@ -38,8 +38,8 @@ PARTS = {
         ("manly_action_verbphrase", "defending something"),
         ("wimpy_action_verbphrase", "a punchline"),
         ("manly_action_results_noun", "freedom"),
-        ("manly_assistance_tool_noun", "a weapon"),
         ("manly_assistance_tool_usage_verb", "pick up"),
+        ("manly_assistance_tool_noun", "a weapon"),
         ("manly_assistance_verb", "stand a post"),
         ("messy_action_verb", "order"),
         ("messy_action_object", "the code red"),
@@ -48,7 +48,7 @@ PARTS = {
     "rmsvssteve": [
         ('wimpy_name_one', 'Richard'),
         ('manly_name', 'Steve'),
-        ('want_noun', 'GPL software'),
+        ('want_noun', 'answers'),
         ('want_really_noun', 'freedom'),
         ('unpleasant_truth_noun', 'user'),
         ('unpleasant_truth_preposition', 'coddling'),
@@ -57,20 +57,20 @@ PARTS = {
         ('wimpy_name_two', 'Linus'),
         ('unfortunately_harmed_noun', 'BSD-licensed code'),
         ('unfortunate_harmer_collectivenoun', 'proprietary hardware vendors'),
-        ('unfortunate_harm_noun', 'existence'),
+        ('unfortunate_harm_noun', 'proliferation'),
         ('ends_justifying_means_result_past', 'harmed Windows adoption'),
         ('ends_justifying_means_result_present', 'increases POSIX installs'),
         ('manly_word_one_noun', 'design'),
         ('manly_word_two_noun', 'beauty'),
         ('manly_word_three_noun', 'gradient fill'),
-        ('manly_action_verbphrase', 'selling hyper-fashionable products'),
+        ('manly_action_verbphrase', 'selling to users who don\'t understand mice with more than one button'),
         ('wimpy_action_verbphrase', 'anti-vi joke'),
         ('manly_action_results_noun', 'userbase'),
-        ('manly_assistance_tool_noun', 'normal IDE'),
-        ('manly_assistance_tool_usage_verb', 'pick up'),
-        ('manly_assistance_verb', 'write a popular app'),
+        ('manly_assistance_tool_usage_verb', 'take'),
+        ('manly_assistance_tool_noun', 'a shower'),
+        ('manly_assistance_verb', 'man a Genius bar for an hour'),
         ('messy_action_verb', 'sacrifice'),
-        ('messy_action_object', 'hacker ideals'),
+        ('messy_action_object', 'Woz and copy PARC\'s ideas'),
         ],
 }
 
@@ -130,8 +130,8 @@ if __name__ == "__main__":
         sys.stdout.write("---> ")
 
         def my_repr():
-            return "{'%s'}" % "', '".join(["'%s': '%s'" % (part, parts_of_speech[part])
-                                           for part in order_of_speech])
+            return "{'%s'}" % ", ".join(["'%s': '%s'" % (part, parts_of_speech[part])
+                                         for part in order_of_speech])
 
         updates = sys.stdin.readline().split()
         if len(updates) < 1 or updates[0] == "quit":
