@@ -102,8 +102,6 @@ PARTS = {
       ],
    }
 
-PARTS["custom"] = PARTS["cliche"][:]
-
 
 SPEECH_TEMPLATE = """
 %(manly_name)s: You want %(want_noun)s?
@@ -122,9 +120,19 @@ We use words like %(manly_word_one_noun)s, %(manly_word_two_noun)s, %(manly_word
 
 if __name__ == "__main__":
 
+   # yeah, the argument parsing sucks.  I prefer writing the silly speeches though.
+   if len(sys.argv) > 1:
+      if sys.argv[1].endswith("-list"):
+         print " ".join(PARTS.keys())
+      if sys.argv[1].strip() in PARTS:
+         sys.stdout.write(SPEECH_TEMPLATE % dict(PARTS[sys.argv[1].strip()]))
+      sys.exit(0)
+
    version = PARTS.keys()[0] # probably deterministic, but random's OK too
    parts_of_speech = dict(PARTS[version])
    order_of_speech = [part for part, default in PARTS[version]]
+
+   PARTS["custom"] = PARTS["cliche"][:]
 
    while True:
 
