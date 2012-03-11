@@ -72,6 +72,34 @@ PARTS = {
       ('messy_action_verb', 'sacrifice'),
       ('messy_action_object', 'Woz and copy PARC\'s ideas'),
       ],
+
+   "javavsc++": [
+      ('wimpy_name_one', 'Java'),
+      ('manly_name', 'C++'),
+      ('want_noun', 'a good programming language'),
+      ('want_really_noun', 'best'),
+      ('unpleasant_truth_noun', 'user'),
+      ('unpleasant_truth_preposition', 'coddling'),
+      ('unpleasant_truth_consequence_verb', 'coddled with'),
+      ('unpleasant_truth_consequence_object', 'shiny UIs and fart apps'),
+      ('wimpy_name_two', 'Linus'),
+      ('unfortunately_harmed_noun', 'BSD-licensed code'),
+      ('unfortunate_harmer_collectivenoun', 'proprietary hardware vendors'),
+      ('unfortunate_harm_noun', 'proliferation'),
+      ('ends_justifying_means_result_past', 'harmed Windows adoption'),
+      ('ends_justifying_means_result_present', 'increases POSIX installs'),
+      ('manly_word_one_noun', 'design'),
+      ('manly_word_two_noun', 'beauty'),
+      ('manly_word_three_noun', 'gradient fill'),
+      ('manly_action_verbphrase', 'selling to users who don\'t understand mice with more than one button'),
+      ('wimpy_action_verbphrase', 'anti-vi joke'),
+      ('manly_action_results_noun', 'userbase'),
+      ('manly_assistance_tool_usage_verb', 'take'),
+      ('manly_assistance_tool_noun', 'a shower'),
+      ('manly_assistance_verb', 'man a Genius bar for an hour'),
+      ('messy_action_verb', 'sacrifice'),
+      ('messy_action_object', 'Woz and copy PARC\'s ideas'),
+      ],
    }
 
 PARTS["custom"] = PARTS["cliche"][:]
@@ -89,16 +117,6 @@ We use words like %(manly_word_one_noun)s, %(manly_word_two_noun)s, %(manly_word
 %(wimpy_name_one)s: Did you %(messy_action_verb)s %(messy_action_object)s?
 %(manly_name)s: You're goddamn right I did!!
 """
-
-def generate_parts_order_andspeech(version=None):
-   if version is None:
-      version = "cliche"
-
-      parts_of_speech = dict(PARTS[version])
-      order_of_speech = [part for part, default in PARTS[version]]
-      updated_speech = dict(parts_of_speech)
-
-      return updated_speech, order_of_speech
 
 
 
@@ -147,6 +165,7 @@ if __name__ == "__main__":
 
          elif updates[0] in PARTS:
             version = updates[0]
+            print version
             parts_of_speech = dict(PARTS[version])
             order_of_speech = [part for part, default in PARTS[version]]
 
