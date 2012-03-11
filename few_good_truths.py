@@ -17,62 +17,62 @@ import sys
 
 
 PARTS = {
-    "cliche": [
-        ("wimpy_name_one", "Kaffee"),
-        ("manly_name", "Jessup"),
-        ("want_noun", "answers"),
-        ("want_really_noun", "truth"),
-        ("unpleasant_truth_noun",  "wall"),
-        ("unpleasant_truth_preposition", "on"),
-        ("unpleasant_truth_consequence_verb", "guarded by"),
-        ("unpleasant_truth_consequence_object", "men with guns"),
-        ("wimpy_name_two", "Lt. Weinberg"),
-        ("unfortunately_harmed_noun", "Santiago"),
-        ("unfortunate_harmer_collectivenoun", "Marines"),
-        ("unfortunate_harm_noun", "death"),
-        ("ends_justifying_means_result_past", "saved lives"),
-        ("ends_justifying_means_result_present", "saves lives"),
-        ("manly_word_one_noun", "honor"),
-        ("manly_word_two_noun", "code"),
-        ("manly_word_three_noun", "loyalty"),
-        ("manly_action_verbphrase", "defending something"),
-        ("wimpy_action_verbphrase", "a punchline"),
-        ("manly_action_results_noun", "freedom"),
-        ("manly_assistance_tool_usage_verb", "pick up"),
-        ("manly_assistance_tool_noun", "a weapon"),
-        ("manly_assistance_verb", "stand a post"),
-        ("messy_action_verb", "order"),
-        ("messy_action_object", "the code red"),
-        ],
+   "cliche": [
+      ("wimpy_name_one", "Kaffee"),
+      ("manly_name", "Jessup"),
+      ("want_noun", "answers"),
+      ("want_really_noun", "truth"),
+      ("unpleasant_truth_noun",  "wall"),
+      ("unpleasant_truth_preposition", "on"),
+      ("unpleasant_truth_consequence_verb", "guarded by"),
+      ("unpleasant_truth_consequence_object", "men with guns"),
+      ("wimpy_name_two", "Lt. Weinberg"),
+      ("unfortunately_harmed_noun", "Santiago"),
+      ("unfortunate_harmer_collectivenoun", "Marines"),
+      ("unfortunate_harm_noun", "death"),
+      ("ends_justifying_means_result_past", "saved lives"),
+      ("ends_justifying_means_result_present", "saves lives"),
+      ("manly_word_one_noun", "honor"),
+      ("manly_word_two_noun", "code"),
+      ("manly_word_three_noun", "loyalty"),
+      ("manly_action_verbphrase", "defending something"),
+      ("wimpy_action_verbphrase", "a punchline"),
+      ("manly_action_results_noun", "freedom"),
+      ("manly_assistance_tool_usage_verb", "pick up"),
+      ("manly_assistance_tool_noun", "a weapon"),
+      ("manly_assistance_verb", "stand a post"),
+      ("messy_action_verb", "order"),
+      ("messy_action_object", "the code red"),
+      ],
 
-    "rmsvssteve": [
-        ('wimpy_name_one', 'Richard'),
-        ('manly_name', 'Steve'),
-        ('want_noun', 'answers'),
-        ('want_really_noun', 'freedom'),
-        ('unpleasant_truth_noun', 'user'),
-        ('unpleasant_truth_preposition', 'coddling'),
-        ('unpleasant_truth_consequence_verb', 'coddled with'),
-        ('unpleasant_truth_consequence_object', 'shiny UIs and fart apps'),
-        ('wimpy_name_two', 'Linus'),
-        ('unfortunately_harmed_noun', 'BSD-licensed code'),
-        ('unfortunate_harmer_collectivenoun', 'proprietary hardware vendors'),
-        ('unfortunate_harm_noun', 'proliferation'),
-        ('ends_justifying_means_result_past', 'harmed Windows adoption'),
-        ('ends_justifying_means_result_present', 'increases POSIX installs'),
-        ('manly_word_one_noun', 'design'),
-        ('manly_word_two_noun', 'beauty'),
-        ('manly_word_three_noun', 'gradient fill'),
-        ('manly_action_verbphrase', 'selling to users who don\'t understand mice with more than one button'),
-        ('wimpy_action_verbphrase', 'anti-vi joke'),
-        ('manly_action_results_noun', 'userbase'),
-        ('manly_assistance_tool_usage_verb', 'take'),
-        ('manly_assistance_tool_noun', 'a shower'),
-        ('manly_assistance_verb', 'man a Genius bar for an hour'),
-        ('messy_action_verb', 'sacrifice'),
-        ('messy_action_object', 'Woz and copy PARC\'s ideas'),
-        ],
-}
+   "rmsvssteve": [
+      ('wimpy_name_one', 'Richard'),
+      ('manly_name', 'Steve'),
+      ('want_noun', 'answers'),
+      ('want_really_noun', 'freedom'),
+      ('unpleasant_truth_noun', 'user'),
+      ('unpleasant_truth_preposition', 'coddling'),
+      ('unpleasant_truth_consequence_verb', 'coddled with'),
+      ('unpleasant_truth_consequence_object', 'shiny UIs and fart apps'),
+      ('wimpy_name_two', 'Linus'),
+      ('unfortunately_harmed_noun', 'BSD-licensed code'),
+      ('unfortunate_harmer_collectivenoun', 'proprietary hardware vendors'),
+      ('unfortunate_harm_noun', 'proliferation'),
+      ('ends_justifying_means_result_past', 'harmed Windows adoption'),
+      ('ends_justifying_means_result_present', 'increases POSIX installs'),
+      ('manly_word_one_noun', 'design'),
+      ('manly_word_two_noun', 'beauty'),
+      ('manly_word_three_noun', 'gradient fill'),
+      ('manly_action_verbphrase', 'selling to users who don\'t understand mice with more than one button'),
+      ('wimpy_action_verbphrase', 'anti-vi joke'),
+      ('manly_action_results_noun', 'userbase'),
+      ('manly_assistance_tool_usage_verb', 'take'),
+      ('manly_assistance_tool_noun', 'a shower'),
+      ('manly_assistance_verb', 'man a Genius bar for an hour'),
+      ('messy_action_verb', 'sacrifice'),
+      ('messy_action_object', 'Woz and copy PARC\'s ideas'),
+      ],
+   }
 
 PARTS["custom"] = PARTS["cliche"][:]
 
@@ -91,33 +91,33 @@ We use words like %(manly_word_one_noun)s, %(manly_word_two_noun)s, %(manly_word
 """
 
 def generate_parts_order_andspeech(version=None):
-    if version is None:
-        version = "cliche"
+   if version is None:
+      version = "cliche"
 
-    parts_of_speech = dict(PARTS[version])
-    order_of_speech = [part for part, default in PARTS[version]]
-    updated_speech = dict(parts_of_speech)
+      parts_of_speech = dict(PARTS[version])
+      order_of_speech = [part for part, default in PARTS[version]]
+      updated_speech = dict(parts_of_speech)
 
-    return updated_speech, order_of_speech
+      return updated_speech, order_of_speech
 
 
 
 if __name__ == "__main__":
 
-    version = PARTS.keys()[0] # probably deterministic, but random's OK too
-    parts_of_speech = dict(PARTS[version])
-    order_of_speech = [part for part, default in PARTS[version]]
+   version = PARTS.keys()[0] # probably deterministic, but random's OK too
+   parts_of_speech = dict(PARTS[version])
+   order_of_speech = [part for part, default in PARTS[version]]
 
-    while True:
+   while True:
 
-        sys.stdout.write(SPEECH_TEMPLATE % (parts_of_speech))
-        sys.stdout.write(os.linesep)
-        indexes = dict(enumerate(order_of_speech))
-        for index, key in indexes.iteritems():
-            sys.stdout.write("%0.2i: %40s: %s%s" % (
-                    index, key, parts_of_speech[key], os.linesep))
+      sys.stdout.write(SPEECH_TEMPLATE % (parts_of_speech))
+      sys.stdout.write(os.linesep)
+      indexes = dict(enumerate(order_of_speech))
+      for index, key in indexes.iteritems():
+         sys.stdout.write("%0.2i: %40s: %s%s" % (
+               index, key, parts_of_speech[key], os.linesep))
 
-        sys.stdout.write(
+         sys.stdout.write(
             """Enter:
    a) number then new value, or blank to reset; or
    b) version, where version is one of %s (for pre-defined versions); or
@@ -127,33 +127,33 @@ if __name__ == "__main__":
 """
             % ", ".join(sorted(PARTS.keys())))
 
-        sys.stdout.write("---> ")
+         sys.stdout.write("---> ")
 
-        def my_repr():
+         def my_repr():
             return "{'%s'}" % ", ".join(["'%s': '%s'" % (part, parts_of_speech[part])
                                          for part in order_of_speech])
 
-        updates = sys.stdin.readline().split()
-        if len(updates) < 1 or updates[0] == "quit":
+         updates = sys.stdin.readline().split()
+         if len(updates) < 1 or updates[0] == "quit":
             sys.stdout.write(my_repr() + os.linesep)
             sys.exit(0)
 
-        elif updates[0] == "dump":
+         elif updates[0] == "dump":
             # repr manually to do it in order, for sanity / cut & paste ease
             sys.stdout.write(my_repr() + os.linesep + os.linesep)
 
-        elif updates[0] == "eval":
+         elif updates[0] == "eval":
             parts_of_speech = eval(" ".join(updates[1:]))
 
-        elif updates[0] in PARTS:
+         elif updates[0] in PARTS:
             version = updates[0]
             parts_of_speech = dict(PARTS[version])
             order_of_speech = [part for part, default in PARTS[version]]
 
-        elif updates[0][0] in [str(i) for i in range(10)]:
+         elif updates[0][0] in [str(i) for i in range(10)]:
             update_key = int(updates[0])
             update_value = " ".join(updates[1:])
             if not update_value:
-                update_value = dict(PARTS[version])[indexes[update_key]]
+               update_value = dict(PARTS[version])[indexes[update_key]]
             parts_of_speech[indexes[update_key]] = update_value
 
