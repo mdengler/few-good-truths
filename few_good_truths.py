@@ -76,29 +76,29 @@ PARTS = {
    "javavsc++": [
       ('wimpy_name_one', 'Java'),
       ('manly_name', 'C++'),
-      ('want_noun', 'a good programming language'),
+      ('want_noun', 'good performance'),
       ('want_really_noun', 'best'),
-      ('unpleasant_truth_noun', 'user'),
-      ('unpleasant_truth_preposition', 'coddling'),
-      ('unpleasant_truth_consequence_verb', 'coddled with'),
-      ('unpleasant_truth_consequence_object', 'shiny UIs and fart apps'),
-      ('wimpy_name_two', 'Linus'),
-      ('unfortunately_harmed_noun', 'BSD-licensed code'),
-      ('unfortunate_harmer_collectivenoun', 'proprietary hardware vendors'),
-      ('unfortunate_harm_noun', 'proliferation'),
-      ('ends_justifying_means_result_past', 'harmed Windows adoption'),
-      ('ends_justifying_means_result_present', 'increases POSIX installs'),
-      ('manly_word_one_noun', 'design'),
-      ('manly_word_two_noun', 'beauty'),
-      ('manly_word_three_noun', 'gradient fill'),
-      ('manly_action_verbphrase', 'selling to users who don\'t understand mice with more than one button'),
-      ('wimpy_action_verbphrase', 'anti-vi joke'),
-      ('manly_action_results_noun', 'userbase'),
+      ('unpleasant_truth_noun', 'memory location'),
+      ('unpleasant_truth_preposition', 'pointing to'),
+      ('unpleasant_truth_consequence_verb', 'addressed via'),
+      ('unpleasant_truth_consequence_object', 'pointers'),
+      ('wimpy_name_two', 'C#'),
+      ('unfortunately_harmed_noun', 'automatic memory management'),
+      ('unfortunate_harmer_collectivenoun', 'STL'),
+      ('unfortunate_harm_noun', 'elision'),
+      ('ends_justifying_means_result_past', 'increased performance'),
+      ('ends_justifying_means_result_present', 'increases performance'),
+      ('manly_word_one_noun', 'reference'),
+      ('manly_word_two_noun', 'smart pointer'),
+      ('manly_word_three_noun', 'trampoline'),
+      ('manly_action_verbphrase', 'improving performance'),
+      ('wimpy_action_verbphrase', 'punchline'),
+      ('manly_action_results_noun', 'performance'),
       ('manly_assistance_tool_usage_verb', 'take'),
-      ('manly_assistance_tool_noun', 'a shower'),
-      ('manly_assistance_verb', 'man a Genius bar for an hour'),
+      ('manly_assistance_tool_noun', 'read the dragon book'),
+      ('manly_assistance_verb', 'write a compiler'),
       ('messy_action_verb', 'sacrifice'),
-      ('messy_action_object', 'Woz and copy PARC\'s ideas'),
+      ('messy_action_object', 'productivity for determinism'),
       ],
    }
 
@@ -135,7 +135,7 @@ if __name__ == "__main__":
          sys.stdout.write("%0.2i: %40s: %s%s" % (
                index, key, parts_of_speech[key], os.linesep))
 
-         sys.stdout.write(
+      sys.stdout.write(
             """Enter:
    a) number then new value, or blank to reset; or
    b) version, where version is one of %s (for pre-defined versions); or
@@ -145,34 +145,33 @@ if __name__ == "__main__":
 """
             % ", ".join(sorted(PARTS.keys())))
 
-         sys.stdout.write("---> ")
+      sys.stdout.write("---> ")
 
-         def my_repr():
-            return "{'%s'}" % ", ".join(["'%s': '%s'" % (part, parts_of_speech[part])
-                                         for part in order_of_speech])
+      def my_repr():
+         return "{%s}" % ", ".join(["'%s': '%s'" % (part, parts_of_speech[part])
+                                    for part in order_of_speech])
 
-         updates = sys.stdin.readline().split()
-         if len(updates) < 1 or updates[0] == "quit":
-            sys.stdout.write(my_repr() + os.linesep)
-            sys.exit(0)
+      updates = sys.stdin.readline().split()
+      if len(updates) < 1 or updates[0] == "quit":
+         sys.stdout.write(my_repr() + os.linesep)
+         sys.exit(0)
 
-         elif updates[0] == "dump":
-            # repr manually to do it in order, for sanity / cut & paste ease
-            sys.stdout.write(my_repr() + os.linesep + os.linesep)
+      elif updates[0] == "dump":
+         # repr manually to do it in order, for sanity / cut & paste ease
+         sys.stdout.write(my_repr() + os.linesep + os.linesep)
 
-         elif updates[0] == "eval":
-            parts_of_speech = eval(" ".join(updates[1:]))
+      elif updates[0] == "eval":
+         parts_of_speech = eval(" ".join(updates[1:]))
 
-         elif updates[0] in PARTS:
-            version = updates[0]
-            print version
-            parts_of_speech = dict(PARTS[version])
-            order_of_speech = [part for part, default in PARTS[version]]
+      elif updates[0] in PARTS:
+         version = updates[0]
+         parts_of_speech = dict(PARTS[version])
+         order_of_speech = [part for part, default in PARTS[version]]
 
-         elif updates[0][0] in [str(i) for i in range(10)]:
-            update_key = int(updates[0])
-            update_value = " ".join(updates[1:])
-            if not update_value:
-               update_value = dict(PARTS[version])[indexes[update_key]]
-            parts_of_speech[indexes[update_key]] = update_value
+      elif updates[0][0] in [str(i) for i in range(10)]:
+         update_key = int(updates[0])
+         update_value = " ".join(updates[1:])
+         if not update_value:
+            update_value = dict(PARTS[version])[indexes[update_key]]
+         parts_of_speech[indexes[update_key]] = update_value
 
