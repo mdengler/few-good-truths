@@ -104,6 +104,35 @@ PARTS = {
       ('messy_action_verb', 'sacrifice'),
       ('messy_action_object', 'productivity for determinism'),
       ],
+
+   "pythonvsc++": [
+      ('wimpy_name_one', 'Python'),
+      ('manly_name', 'C++'),
+      ('want_noun', 'high performance applications'),
+      ('want_really_noun', 'best programming language'),
+      ('unpleasant_truth_noun', 'memory location'),
+      ('unpleasant_truth_preposition', 'pointing to'),
+      ('unpleasant_truth_consequence_verb', 'addressed via'),
+      ('unpleasant_truth_consequence_object', 'pointers'),
+      ('wimpy_name_two', 'C#'),
+      ('unfortunately_harmed_noun', 'automatic memory management'),
+      ('unfortunate_harmer_collectivenoun', 'trait system'),
+      ('unfortunate_harm_noun', 'elision'),
+      ('ends_justifying_means_result_past', 'increased performance'),
+      ('ends_justifying_means_result_present', 'increases performance'),
+      ('manly_word_one_noun', 'reference'),
+      ('manly_word_two_noun', 'smart pointer'),
+      ('manly_word_three_noun', 'trampoline'),
+      ('manly_action_verbphrase', 'improving performance'),
+      ('wimpy_action_verbphrase', 'punchline'),
+      ('manly_action_results_noun', 'performance'),
+      ('manly_assistance_tool_usage_verb', 'read'),
+      ('manly_assistance_tool_noun', 'the dragon book'),
+      ('manly_assistance_verb', 'write a compiler'),
+      ('messy_action_verb', 'sacrifice'),
+      ('messy_action_object', 'productivity for determinism'),
+      ],
+
    }
 
 
