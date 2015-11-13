@@ -10,7 +10,7 @@ This was a bit of fun to start with, but it's really cumbersome to
 use.  But for those office polemics where you for some reason must be
 the type of person to like this, it's useful.
 
-Copyright 2011-2012 Martin Dengler
+Copyright 2011-2012, 2015 Martin Dengler
 
 GPLv3+
 
